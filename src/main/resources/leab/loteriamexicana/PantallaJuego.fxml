@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PantallaJuegoController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="1050.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="600.0" layoutX="750.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="600.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="600.0" layoutX="250.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+            <Pane layoutX="25.0" layoutY="40.0" prefHeight="250.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="210.0" layoutX="24.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="150.0" />
+                  <ImageView fx:id="img_AlineacionGanadora" fitHeight="200.0" fitWidth="200.0" layoutX="32.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../formaGanar/cualquiercolumna.PNG" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="20.0" text="Alineación Ganadora">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="450.0" layoutY="40.0" text="Tablero Actual">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Pane layoutX="280.0" layoutY="70.0" prefHeight="500.0" prefWidth="440.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="495.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="440.0" />
+                  <Line endX="110.0" endY="494.0" layoutY="1.0" startX="110.0" />
+                  <Line endX="120.0" endY="494.0" layoutX="100.0" layoutY="1.0" startX="120.0" />
+                  <Line endX="130.0" endY="494.0" layoutX="200.0" startX="130.0" />
+                  <Line endX="437.0" endY="125.0" startX="1.0" startY="125.0" />
+                  <Line endX="437.0" endY="150.0" layoutY="100.0" startX="1.0" startY="150.0" />
+                  <Line endX="439.0" endY="260.0" layoutY="110.0" startX="1.0" startY="260.0" />
+                  <ImageView fx:id="img_NaipeTablero_1" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_2" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_3" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_4" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="5.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_5" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="130.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_6" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="130.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_8" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="130.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="130.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_9" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="252.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/9.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_10" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="252.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/10.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_11" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="252.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/11.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_12" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="252.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/12.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_13" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="373.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/13.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_14" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="373.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/14.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_15" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="373.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/15.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_NaipeTablero_16" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="373.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/16.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="25.0" layoutY="350.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="200.0" />
+                  <Button layoutX="25.0" layoutY="30.0" mnemonicParsing="false" onAction="#accionMostrarTableroJugador" prefWidth="150.0" text="Jugador">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="40.0" text="Mostrar Tablero">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="25.0" layoutY="90.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador" prefWidth="150.0" text="Computador">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="790.0" layoutY="150.0" prefHeight="400.0" prefWidth="225.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="300.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="225.0" />
+                  <ImageView fx:id="img_NaipeActual" fitHeight="300.0" fitWidth="225.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagenesNaipe/23.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btn_CambiarNaipe" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#accionCambiarNaipe" prefWidth="175.0" text="Cambiar Naipe">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Label layoutX="850.0" layoutY="100.0" text="Naipe Actual">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

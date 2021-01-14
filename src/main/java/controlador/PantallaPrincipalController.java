@@ -44,7 +44,17 @@ public class PantallaPrincipalController implements Initializable {
     }
 
     @FXML
-    private void accionNuevoJuego(ActionEvent event) {
+    private void accionNuevoJuego(ActionEvent event) throws IOException
+    {
+        Helper.HelperJuego.cargarReportes();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PantallaJuego" + ".fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Juego en Curso");
+        stage.setMaxWidth(1050);
+        stage.setMaxHeight(650);
+        stage.setScene(new Scene(root));  
+        stage.show(); 
     }
 
     @FXML
