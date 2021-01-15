@@ -47,7 +47,7 @@ public class PantallaPrincipalController implements Initializable {
     private void accionNuevoJuego(ActionEvent event) throws IOException
     {
         Helper.HelperJuego.cargarReportes();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PantallaJuego" + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PantallaInicioJuego" + ".fxml"));
         Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Juego en Curso");

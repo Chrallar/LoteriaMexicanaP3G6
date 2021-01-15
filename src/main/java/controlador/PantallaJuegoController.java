@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import modelo.Juego;
 
 public class PantallaJuegoController implements Initializable {
 
@@ -47,13 +48,19 @@ public class PantallaJuegoController implements Initializable {
     @FXML
     private Button btn_CambiarNaipe;
 
-    /**
-     * Initializes the controller class.
-     */
+    
+    Juego juegoActual;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+     public void cargarJuego(Juego juego) 
+    {
+        juegoActual = juego;        
+    }
+    
 
     @FXML
     private void accionMostrarTableroJugador(ActionEvent event) {

@@ -7,11 +7,13 @@ public class Juego {
     //Atributos de clase
     private ArrayList<Jugador> jugadores;
     private ArrayList<Naipe> tableroGanador;
+    private Alineacion alineacion;
     
     //Constructor
-    public Juego(ArrayList<Jugador> jugadores, ArrayList<Naipe> tableroGanador) {
+    public Juego(ArrayList<Jugador> jugadores, ArrayList<Naipe> tableroGanador,Alineacion alineacion) {
         this.jugadores = jugadores;
         this.tableroGanador = tableroGanador;
+        this.alineacion = alineacion;
     }
     
     //Getter and Setter
@@ -30,6 +32,16 @@ public class Juego {
     public void setTableroGanador(ArrayList<Naipe> tableroGanador) {
         this.tableroGanador = tableroGanador;
     }
+
+    public Alineacion getAlineacion() {
+        return alineacion;
+    }
+
+    public void setAlineacion(Alineacion alineacion) {
+        this.alineacion = alineacion;
+    }
+    
+    
     
     //Metodos de clase
     public static void ubicarNaipe()

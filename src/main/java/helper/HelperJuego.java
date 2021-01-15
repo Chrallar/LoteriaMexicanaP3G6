@@ -5,7 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import javafx.scene.control.Alert;
+import modelo.Alineacion;
 import modelo.Ficha;
 import modelo.Jugador;
 import modelo.Reporte;
@@ -79,10 +81,44 @@ public class HelperJuego {
         return reportes;
     }
     
-    public static void showMessage(Alert show,String titulo, String encabezado, String mensaje){
+    public static void showMessage(Alert show, String titulo, String encabezado, String mensaje){
         show.setHeaderText(encabezado);
         show.setTitle(titulo);
         show.setContentText(mensaje);
         show.showAndWait();
     }
+    
+    public static Alineacion generarAlineacionGanadora()
+    {
+        Alineacion alineacionGanadora;
+        ArrayList<Alineacion> listaAlineaciones = new ArrayList<>();
+        listaAlineaciones.add(Alineacion.FIGURAS_EN_UNA_FILA);
+        listaAlineaciones.add(Alineacion.FIGURAS_EN_UNA_COLUMNA);
+        listaAlineaciones.add(Alineacion.FIGURAS_EN_LAS_ESQUINAS);
+        listaAlineaciones.add(Alineacion.FIGURAS_JUNTAS_EN_CUALQUIER_ESQUINA);  
+        
+        //Generar alineacion al azar
+        int indiceAlineacion = new Random().nextInt(3);
+        alineacionGanadora = listaAlineaciones.get(indiceAlineacion);        
+        return alineacionGanadora;        
+    }
+    
+    public static String getAlineacionGanadora(Alineacion alineacion)
+    {
+        switch(alineacion)
+        {
+            case FIGURAS_EN_UNA_FILA:
+                return "cualquierfila.png";                
+                
+            case FIGURAS_EN_UNA_COLUMNA:
+                return "cualquiercolumna.png";
+             
+            case FIGURAS_EN_LAS_ESQUINAS:
+                return "figurasenextremos.png";
+                
+            case FIGURAS_JUNTAS_EN_CUALQUIER_ESQUINA:
+                return "figurasjuntasenesquina";
+        }
+        return "";
+    }       
 }
