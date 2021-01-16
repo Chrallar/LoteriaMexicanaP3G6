@@ -6,21 +6,12 @@ import java.util.ArrayList;
 public class Jugador implements Serializable,Comparable<Reporte>
 {
     //Atributos de clase
-    private String nombre;
-    private ArrayList<Naipe> masoNaipe;
-    private ArrayList<Naipe> tablero;
+    private String nombre;    
+    private Naipe[][] tablero;
     
-    //Constructor
-    public Jugador(String nombre)
-    {
-        this.nombre = nombre;
-        this.masoNaipe = new ArrayList<>();
-        this.tablero   = new ArrayList<>();
-    }
-    
-    public Jugador(String nombre, ArrayList<Naipe> masoNaipe, ArrayList<Naipe> tablero) {
-        this.nombre = nombre;
-        this.masoNaipe = masoNaipe;
+    //Constructor       
+    public Jugador(String nombre, Naipe[][] tablero) {
+        this.nombre = nombre;        
         this.tablero = tablero;
     }
     
@@ -33,19 +24,11 @@ public class Jugador implements Serializable,Comparable<Reporte>
         this.nombre = nombre;
     }
 
-    public ArrayList<Naipe> getMasoNaipe() {
-        return masoNaipe;
-    }
-
-    public void setMasoNaipe(ArrayList<Naipe> masoNaipe) {
-        this.masoNaipe = masoNaipe;
-    }
-
-    public ArrayList<Naipe> getTablero() {
+    public Naipe[][] getTablero() {
         return tablero;
     }
 
-    public void setTablero(ArrayList<Naipe> tablero) {
+    public void setTablero(Naipe[][] tablero) {
         this.tablero = tablero;
     }
     

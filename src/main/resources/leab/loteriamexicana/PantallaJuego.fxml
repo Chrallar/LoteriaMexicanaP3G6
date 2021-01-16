@@ -20,7 +20,7 @@
             <Pane layoutX="25.0" layoutY="40.0" prefHeight="250.0" prefWidth="200.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="210.0" layoutX="24.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="150.0" />
-                  <ImageView fx:id="img_AlineacionGanadora" fitHeight="200.0" fitWidth="200.0" layoutX="32.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img_AlineacionGanadora" fitHeight="200.0" fitWidth="141.0" layoutX="29.0" layoutY="30.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../formaGanar/cualquiercolumna.PNG" />
                      </image>
@@ -76,12 +76,12 @@
                         <Image url="@../../imagenesNaipe/6.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_8" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_7" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="130.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/7.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_8" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="130.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/8.png" />
                      </image>
@@ -151,7 +151,7 @@
             <Pane layoutX="790.0" layoutY="150.0" prefHeight="400.0" prefWidth="225.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="300.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="225.0" />
-                  <ImageView fx:id="img_NaipeActual" fitHeight="300.0" fitWidth="225.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeActual" fitHeight="300.0" fitWidth="220.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/back.png" />
                      </image>

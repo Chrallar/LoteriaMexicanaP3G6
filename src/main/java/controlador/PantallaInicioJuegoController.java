@@ -7,6 +7,7 @@ package controlador;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 import leab.loteriamexicana.App;
 import modelo.Alineacion;
 import modelo.Juego;
+import modelo.Jugador;
+import modelo.Naipe;
 
 /**
  * FXML Controller class
@@ -43,6 +46,7 @@ public class PantallaInicioJuegoController implements Initializable {
     
     
     Alineacion alineacionGanadora;
+    String nombreJugador;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,7 +65,7 @@ public class PantallaInicioJuegoController implements Initializable {
     @FXML
     private void ComenzarJuego(ActionEvent event) 
     {
-        String nombreJugador = txt_NombreJugador.getText().trim();
+        nombreJugador = txt_NombreJugador.getText().trim();
         if(nombreJugador.isEmpty() || alineacionGanadora.equals(Alineacion.ALINEACION_NO_SELECCIONADA))
            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.WARNING),"Inicio de Juego",null,"Debe ingresar un nombre y haber generado la alineacion ganadora!");
         else
@@ -90,7 +94,24 @@ public class PantallaInicioJuegoController implements Initializable {
     
     public void cargarPanelJuego()
     {
-        Juego juego = new Juego(null,null,alineacionGanadora);
+        Naipe[][] tableroJugadorHumano = Helper.HelperJuego.generarTableroJugador();
+        Jugador jugadorHumano = new Jugador(nombreJugador,tableroJugadorHumano);                
+        Naipe[][] tableroJugadorPC = null;
+        boolean tableroIgual = true;
+        while(tableroIgual)
+        { 
+            tableroJugadorPC = Helper.HelperJuego.generarTableroJugador();
+            if(!tableroJugadorHumano.equals(tableroJugadorPC))
+                tableroIgual = false;
+        }        
+        
+        Jugador jugadorPC = new Jugador("Jugador PC",tableroJugadorPC);
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugadorHumano);
+        jugadores.add(jugadorPC);
+        
+        ArrayList<Naipe> masoJuego = Helper.HelperJuego.generarMasoNaipes();        
+        Juego juego = new Juego(jugadores,alineacionGanadora,masoJuego);        
         mostrarPanelJuego(juego);
     }
     
@@ -105,7 +126,7 @@ public class PantallaInicioJuegoController implements Initializable {
             controlador.cargarJuego(juego);
             Stage stage = new Stage();
             stage.setTitle("Juego Comenzado");
-            stage.setScene(new Scene(root, 800, 600));
+            stage.setScene(new Scene(root, 1050, 600));
             stage.show();  
             Stage stageActual = (Stage) txt_NombreJugador.getScene().getWindow();            
             stageActual.close();

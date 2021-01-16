@@ -1,15 +1,19 @@
 package Helper;
 
+import java.io.File;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Random;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import modelo.Alineacion;
 import modelo.Ficha;
 import modelo.Jugador;
+import modelo.Naipe;
 import modelo.Reporte;
 
 public class HelperJuego {
@@ -33,15 +37,15 @@ public class HelperJuego {
             Jugador jugador;
             Reporte reporte;           
 
-            jugador = new Jugador("Jonathan");            
+            jugador = new Jugador("Jonathan",null);            
             reporte = new Reporte(StringToDateTime("2020-01-13 09:12:20"),10,jugador,1,"Linea Vertical");            
             Reporte.guardarReporte(reporte);
 
-            jugador = new Jugador("Josue");
+            jugador = new Jugador("Josue",null);
             reporte = new Reporte(StringToDateTime("2020-01-13 12:12:20"),10,jugador,1,"Linea Horizontal");
             Reporte.guardarReporte(reporte);            
 
-            jugador = new Jugador("Luis");
+            jugador = new Jugador("Luis",null);
             reporte = new Reporte(StringToDateTime("2020-01-13 16:12:20"),10,jugador,1,"Diagonal Principal");        
             Reporte.guardarReporte(reporte);            
         }
@@ -120,5 +124,82 @@ public class HelperJuego {
                 return "figurasjuntasenesquina";
         }
         return "";
-    }       
+    }   
+
+    public static Naipe[][] generarTableroJugador()
+    {
+        Naipe[][] tablero = new Naipe[4][4];
+        ArrayList<Naipe> listaNaipes = getListaNaipes();                
+        ArrayList<Integer> listaIndices = new ArrayList<>();
+        int indice = 0, indiceNaipe;
+        while(indice <= 15)
+        {
+            indiceNaipe = new Random().nextInt(53);
+            if(!listaIndices.contains(indiceNaipe))
+            {
+                listaIndices.add(indiceNaipe);
+                indice++;
+            }
+        }
+        
+        tablero[0][0] = listaNaipes.get(listaIndices.get(0));
+        tablero[0][1] = listaNaipes.get(listaIndices.get(1));
+        tablero[0][2] = listaNaipes.get(listaIndices.get(2));
+        tablero[0][3] = listaNaipes.get(listaIndices.get(3));
+        
+        tablero[1][0] = listaNaipes.get(listaIndices.get(4));
+        tablero[1][1] = listaNaipes.get(listaIndices.get(5));
+        tablero[1][2] = listaNaipes.get(listaIndices.get(6));
+        tablero[1][3] = listaNaipes.get(listaIndices.get(7));
+        
+        tablero[2][0] = listaNaipes.get(listaIndices.get(8));
+        tablero[2][1] = listaNaipes.get(listaIndices.get(9));
+        tablero[2][2] = listaNaipes.get(listaIndices.get(10));
+        tablero[2][3] = listaNaipes.get(listaIndices.get(11));
+        
+        tablero[3][0] = listaNaipes.get(listaIndices.get(12));
+        tablero[3][1] = listaNaipes.get(listaIndices.get(13));
+        tablero[3][2] = listaNaipes.get(listaIndices.get(14));
+        tablero[3][3] = listaNaipes.get(listaIndices.get(15));
+        
+        for(int i = 0; i < 4;i++)        
+            for(int j = 0 ; j < 4; j++)           
+                System.out.println(tablero[i][j].getNombre());                    
+                                                        
+        return tablero;        
+    }
+    
+    public static ArrayList<Naipe> getListaNaipes()
+    {
+        String rutaNaipes = helper.HelperArchivo.rutaArchivo+"/"+"cartasloteria.csv";
+        ArrayList<Naipe> naipes = new ArrayList<>();
+        ArrayList<String> listaNaipes =  helper.HelperArchivo.leerLineasArchivo(rutaNaipes);
+        for(String naipeString : listaNaipes)
+        {
+            String[] naipePart    = naipeString.split(",");
+            String numero         = naipePart[0];
+            String nombreNaipe    = naipePart[1];
+            
+            String urlImagen = numero+".png";
+            Image imagenNaipe = getImagenNaipe(urlImagen);
+            naipes.add(new Naipe(Integer.parseInt(numero),nombreNaipe,urlImagen,imagenNaipe));            
+        }                
+        return naipes;
+    }
+    
+    public static Image getImagenNaipe(String imagenURL)
+    {
+        //Cargar la imagen del naipe
+        File file;
+        file = new File("src/main/resources/imagenesNaipe/"+imagenURL);
+        Image  image = new Image(file.toURI().toString());        
+        return image;
+    } 
+    
+    public static ArrayList generarMasoNaipes()
+    {
+        ArrayList<Naipe> listaNaipes = getListaNaipes();      
+        Collections.shuffle(listaNaipes);
+        return listaNaipes;
+    }
 }

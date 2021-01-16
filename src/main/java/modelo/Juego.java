@@ -5,15 +5,17 @@ import java.util.ArrayList;
 public class Juego {
 
     //Atributos de clase
-    private ArrayList<Jugador> jugadores;
-    private ArrayList<Naipe> tableroGanador;
+    private ArrayList<Jugador> jugadores;   
+    private ArrayList<Naipe> masoNaipes;
     private Alineacion alineacion;
+    private int ordenNaipe;
+    private Naipe naipeActual;
     
     //Constructor
-    public Juego(ArrayList<Jugador> jugadores, ArrayList<Naipe> tableroGanador,Alineacion alineacion) {
-        this.jugadores = jugadores;
-        this.tableroGanador = tableroGanador;
+    public Juego(ArrayList<Jugador> jugadores,Alineacion alineacion, ArrayList<Naipe> naipes) {
+        this.jugadores = jugadores;        
         this.alineacion = alineacion;
+        this.masoNaipes = naipes;
     }
     
     //Getter and Setter
@@ -24,15 +26,7 @@ public class Juego {
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
-
-    public ArrayList<Naipe> getTableroGanador() {
-        return tableroGanador;
-    }
-
-    public void setTableroGanador(ArrayList<Naipe> tableroGanador) {
-        this.tableroGanador = tableroGanador;
-    }
-
+    
     public Alineacion getAlineacion() {
         return alineacion;
     }
@@ -40,9 +34,34 @@ public class Juego {
     public void setAlineacion(Alineacion alineacion) {
         this.alineacion = alineacion;
     }
+
+    public ArrayList<Naipe> getMasoNaipes() {
+        return masoNaipes;
+    }
+
+    public void setMasoNaipes(ArrayList<Naipe> masoNaipes) {
+        this.masoNaipes = masoNaipes;
+    }
+
+    public int getOrdenNaipe() {
+        return ordenNaipe;
+    }
+
+    public void setOrdenNaipe(int ordenNaipe) {
+        this.ordenNaipe = ordenNaipe;
+    }
+
+    public Naipe getNaipeActual() {
+        return naipeActual;
+    }
+
+    public void setNaipeActual(Naipe naipeActual) {
+        this.naipeActual = naipeActual;
+    }
     
     
     
+              
     //Metodos de clase
     public static void ubicarNaipe()
     {

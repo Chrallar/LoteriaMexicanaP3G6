@@ -9,6 +9,7 @@ public class Naipe implements InterfazPosicionObjeto
     private String nombre;
     private String urlImagenNaipe;
     private Image imagenNaipe;
+    private boolean esSeleccionado;
     
     //Constructor
     public Naipe(int numero, String nombre, String urlImagenNaipe, Image imagenNaipe) {
@@ -49,7 +50,17 @@ public class Naipe implements InterfazPosicionObjeto
 
     public void setImagenNaipe(Image imagenNaipe) {
         this.imagenNaipe = imagenNaipe;
-    }               
+    }
+
+    public boolean isEsSeleccionado() {
+        return esSeleccionado;
+    }
+
+    public void setEsSeleccionado(boolean esSeleccionado) {
+        this.esSeleccionado = esSeleccionado;
+    }
+    
+    
 
     @Override
     public void ubicarPosicionTablero(int x, int y) {
