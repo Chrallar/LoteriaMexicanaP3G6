@@ -32,7 +32,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="450.0" layoutY="40.0" text="Tablero Actual">
+            <Label fx:id="lbl_tablero_actual" layoutX="450.0" layoutY="40.0" text="Tablero Actual">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -46,82 +46,82 @@
                   <Line endX="437.0" endY="125.0" startX="1.0" startY="125.0" />
                   <Line endX="437.0" endY="150.0" layoutY="100.0" startX="1.0" startY="150.0" />
                   <Line endX="439.0" endY="260.0" layoutY="110.0" startX="1.0" startY="260.0" />
-                  <ImageView fx:id="img_NaipeTablero_1" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_1" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#accionNaipe1" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/1.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_2" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="5.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_2" fitHeight="116.0" fitWidth="101.0" layoutX="113.0" layoutY="5.0" onMouseClicked="#accionNaipe2" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_3" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="5.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_3" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="5.0" onMouseClicked="#accionNaipe3" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/3.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_4" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="5.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_4" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="5.0" onMouseClicked="#accionNaipe4" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/4.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_5" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_5" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="130.0" onMouseClicked="#accionNaipe5" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/5.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_6" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_6" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="130.0" onMouseClicked="#accionNaipe6" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/6.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_7" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_7" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="130.0" onMouseClicked="#accionNaipe7" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/7.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_8" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="130.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_8" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="130.0" onMouseClicked="#accionNaipe8" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/8.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_9" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="252.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_9" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="252.0" onMouseClicked="#accionNaipe9" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/9.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_10" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="252.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_10" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="252.0" onMouseClicked="#accionNaipe10" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/10.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_11" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="252.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_11" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="252.0" onMouseClicked="#accionNaipe11" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/11.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_12" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="252.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_12" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="252.0" onMouseClicked="#accionNaipe12" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/12.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_13" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="373.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_13" fitHeight="116.0" fitWidth="101.0" layoutX="5.0" layoutY="373.0" onMouseClicked="#accionNaipe13" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/13.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_14" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="373.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_14" fitHeight="116.0" fitWidth="101.0" layoutX="114.0" layoutY="373.0" onMouseClicked="#accionNaipe14" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/14.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_15" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="373.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_15" fitHeight="116.0" fitWidth="101.0" layoutX="224.0" layoutY="373.0" onMouseClicked="#accionNaipe15" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/15.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_NaipeTablero_16" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="373.0" pickOnBounds="true">
+                  <ImageView fx:id="img_NaipeTablero_16" fitHeight="116.0" fitWidth="101.0" layoutX="334.0" layoutY="373.0" onMouseClicked="#accionNaipe16" pickOnBounds="true">
                      <image>
                         <Image url="@../../imagenesNaipe/16.png" />
                      </image>

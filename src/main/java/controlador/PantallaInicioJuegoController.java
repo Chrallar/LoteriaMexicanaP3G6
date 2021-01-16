@@ -100,6 +100,7 @@ public class PantallaInicioJuegoController implements Initializable {
         boolean tableroIgual = true;
         while(tableroIgual)
         { 
+            System.out.println("trabado");
             tableroJugadorPC = Helper.HelperJuego.generarTableroJugador();
             if(!tableroJugadorHumano.equals(tableroJugadorPC))
                 tableroIgual = false;
@@ -111,7 +112,8 @@ public class PantallaInicioJuegoController implements Initializable {
         jugadores.add(jugadorPC);
         
         ArrayList<Naipe> masoJuego = Helper.HelperJuego.generarMasoNaipes();        
-        Juego juego = new Juego(jugadores,alineacionGanadora,masoJuego);        
+        Juego juego = new Juego(jugadores,alineacionGanadora,masoJuego);   
+        System.out.println("termino el proceso");
         mostrarPanelJuego(juego);
     }
     
@@ -129,7 +131,7 @@ public class PantallaInicioJuegoController implements Initializable {
             stage.setScene(new Scene(root, 1050, 600));
             stage.show();  
             Stage stageActual = (Stage) txt_NombreJugador.getScene().getWindow();            
-            stageActual.close();
+            stageActual.close();            
         }
         catch(Exception e)
         {

@@ -181,8 +181,11 @@ public class HelperJuego {
             String nombreNaipe    = naipePart[1];
             
             String urlImagen = numero+".png";
+            String urlImagenSeleccionado = numero+"seleccionado.png";
+            
             Image imagenNaipe = getImagenNaipe(urlImagen);
-            naipes.add(new Naipe(Integer.parseInt(numero),nombreNaipe,urlImagen,imagenNaipe));            
+            Image imagenNaipeSeleccionado = getImagenNaipe(urlImagenSeleccionado);
+            naipes.add(new Naipe(Integer.parseInt(numero),nombreNaipe,urlImagen,imagenNaipe,imagenNaipeSeleccionado));            
         }                
         return naipes;
     }
@@ -201,5 +204,13 @@ public class HelperJuego {
         ArrayList<Naipe> listaNaipes = getListaNaipes();      
         Collections.shuffle(listaNaipes);
         return listaNaipes;
+    }
+    
+    public static boolean validarNaipeSeleccionado(int naipeSeleccionado, int naipeActual)
+    {
+        boolean estadoNaipeSeleccionado = false;
+        if(naipeSeleccionado == naipeActual)
+            estadoNaipeSeleccionado = true;
+        return estadoNaipeSeleccionado;
     }
 }

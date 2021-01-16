@@ -6,7 +6,7 @@ public class Ficha implements InterfazPosicionObjeto
 {
     //Atributo de clase
     private String urlImagenFicha;
-    private Image imagenFicha;
+    private Image imagenFicha;   
 
     //Constructor
     public Ficha() {        
@@ -35,7 +35,7 @@ public class Ficha implements InterfazPosicionObjeto
     }
 
     @Override
-    public void ubicarPosicionTablero(int x, int y) {        
+    public void ubicarPosicionTablero(double x, double y) {        
     }
     
     

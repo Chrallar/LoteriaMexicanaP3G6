@@ -2,21 +2,23 @@ package modelo;
 
 import javafx.scene.image.Image;
 
-public class Naipe implements InterfazPosicionObjeto
+public class Naipe 
 {
     //Atributos de clase
     private int numero;
     private String nombre;
     private String urlImagenNaipe;
     private Image imagenNaipe;
+    private Image imagenNaipeSeleccionado;
     private boolean esSeleccionado;
     
     //Constructor
-    public Naipe(int numero, String nombre, String urlImagenNaipe, Image imagenNaipe) {
+    public Naipe(int numero, String nombre, String urlImagenNaipe, Image imagenNaipe,Image imagenNaipeSeleccionado) {
         this.numero = numero;
         this.nombre = nombre;
         this.urlImagenNaipe = urlImagenNaipe;
         this.imagenNaipe = imagenNaipe;
+        this.imagenNaipeSeleccionado = imagenNaipeSeleccionado;
     }
     
     //Getter and Setter
@@ -44,7 +46,10 @@ public class Naipe implements InterfazPosicionObjeto
         this.urlImagenNaipe = urlImagenNaipe;
     }
 
-    public Image getImagenNaipe() {
+    public Image getImagenNaipe() 
+    {
+        if(esSeleccionado)
+            return imagenNaipeSeleccionado;
         return imagenNaipe;
     }
 
@@ -58,12 +63,5 @@ public class Naipe implements InterfazPosicionObjeto
 
     public void setEsSeleccionado(boolean esSeleccionado) {
         this.esSeleccionado = esSeleccionado;
-    }
-    
-    
-
-    @Override
-    public void ubicarPosicionTablero(int x, int y) {
-        
-    }
+    }    
 }

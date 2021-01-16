@@ -1,16 +1,25 @@
 package controlador;
 
+import Helper.HelperJuego;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import modelo.Juego;
+import modelo.Jugador;
 import modelo.Naipe;
 
 public class PantallaJuegoController implements Initializable {
@@ -53,11 +62,28 @@ public class PantallaJuegoController implements Initializable {
     private ImageView img_NaipeActual;
     @FXML
     private Button btn_CambiarNaipe;
-                
-    Juego juegoActual;
+                       
+    Juego juegoActual;  
     ArrayList<Naipe> masoNaipe;
     int ordenNaipe = 0;
-    Naipe naipeActual;
+    Naipe naipeActual;       
+    double coordenadaX,coordenadaY; 
+    int jugadorActual = 1;
+    
+    Naipe[][] tableroJugadorHumano = new Naipe[4][4];
+    Naipe[][] tableroJugadorPC1 = new Naipe[4][4];
+    Naipe[][] tableroJugadorPC2 = new Naipe[4][4];
+    Naipe[][] tableroActual = new Naipe[4][4];
+    
+    Jugador jugadorHumano;
+    Jugador jugadorPC1;
+    Jugador jugadorPC2;
+    String imgURL;    
+    Naipe naipeSeleccionado;
+    @FXML
+    private Label lbl_tablero_actual;
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,8 +93,15 @@ public class PantallaJuegoController implements Initializable {
      public void cargarJuego(Juego juego) 
     {
         juegoActual = juego;
+        jugadorHumano = juegoActual.getJugadores().get(0);
+        tableroJugadorHumano = jugadorHumano.getTablero();
+        
+        jugadorPC1 = juegoActual.getJugadores().get(1);
+        tableroJugadorPC1 = jugadorPC1.getTablero();
+        
         masoNaipe = juegoActual.getMasoNaipes();
-        naipeActual = masoNaipe.get(ordenNaipe);
+        naipeActual = masoNaipe.get(ordenNaipe);    
+        tableroActual = tableroJugadorHumano;             
         cargarDatosJuego();
     }
     
@@ -77,14 +110,20 @@ public class PantallaJuegoController implements Initializable {
     private void accionMostrarTableroJugador(ActionEvent event) 
     {
         //Cargar los datos del tablero del Jugador Humano
+        tableroActual = tableroJugadorHumano;
         cargarImagenesTablero(juegoActual.getJugadores().get(0).getTablero());
+        lbl_tablero_actual.setText("Tablero "+jugadorHumano.getNombre());
+        jugadorActual = 1;
     }
 
     @FXML
     private void accionMostrarTableroComputador(ActionEvent event) 
     {
         //Cargar los datos del tablero del Jugador Humano
+        tableroActual = tableroJugadorPC1;
         cargarImagenesTablero(juegoActual.getJugadores().get(1).getTablero());
+        lbl_tablero_actual.setText("Tablero "+jugadorPC1.getNombre());
+        jugadorActual = 2;
     }
 
     @FXML
@@ -92,10 +131,10 @@ public class PantallaJuegoController implements Initializable {
     {
         //Evita regresar al mismo naipe
         if(ordenNaipe < 54)
-        {            
+        {                        
             cargarNaipeActual();
-            cargarImagenNaipeActual();
-            ordenNaipe++;
+            cargarImagenNaipeActual();            
+            ordenNaipe++;           
         }
     }
     
@@ -104,6 +143,7 @@ public class PantallaJuegoController implements Initializable {
         //Cargar la foto de alineacion ganadora
         String alineacionURL = Helper.HelperJuego.getAlineacionGanadora(juegoActual.getAlineacion());        
         cargarImagenAlineacion("src/main/resources/formaGanar/"+alineacionURL);
+        lbl_tablero_actual.setText("Tablero "+jugadorHumano.getNombre());
         
         //Cargar los datos del tablero del Jugador Humano
         cargarImagenesTablero(juegoActual.getJugadores().get(0).getTablero());  
@@ -196,7 +236,8 @@ public class PantallaJuegoController implements Initializable {
     public void cargarNaipeActual()
     {
         juegoActual.setNaipeActual(masoNaipe.get(ordenNaipe));
-        naipeActual = juegoActual.getNaipeActual();        
+        naipeActual = juegoActual.getNaipeActual();    
+        System.out.println("NaipeActual=>"+naipeActual.getNombre());
     }
     
     public void cargarImagenNaipeActual()
@@ -204,5 +245,354 @@ public class PantallaJuegoController implements Initializable {
         img_NaipeActual.setImage(naipeActual.getImagenNaipe());
         img_NaipeActual.setFitWidth(220);
         img_NaipeActual.setFitHeight(300);              
+    }
+    
+    
+    public Image cargarImagenFrejol(String imgURL)
+    {
+        String url = "src/main/resources/imagenesNaipe/"+imgURL;
+        File file;
+        file = new File(url);
+        Image  image = new Image(file.toURI().toString());
+        return image;        
+    }
+    
+    @FXML
+    private void accionNaipe1(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[0][0];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+                
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_1.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[0][0].setEsSeleccionado(true);            
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe2(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[0][1];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_2.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[0][1].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe3(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[0][2];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_3.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[0][2].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe4(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[0][3];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_4.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[0][3].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe5(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[1][0];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_5.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[1][0].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe6(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[1][1];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_6.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[1][1].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe7(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[1][2];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_7.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[1][2].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe8(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[1][3];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_8.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[1][3].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe9(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[2][0];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_9.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[2][0].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe10(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[2][1];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_10.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[2][1].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe11(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[2][2];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_11.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[2][2].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe12(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[2][3];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_12.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[2][3].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe13(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[3][0];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_13.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[3][0].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe14(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[3][1];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_14.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[3][1].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe15(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[3][2];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_15.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[3][2].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+
+    @FXML
+    private void accionNaipe16(MouseEvent event) 
+    {
+        actualizarTablero();
+        naipeSeleccionado = tableroActual[3][3];
+        if(naipeSeleccionado.isEsSeleccionado())
+            return;
+        
+        System.out.println("NaipeActual=> ("+naipeActual.getNombre()+" naipeseleccionado=>"+naipeSeleccionado.getNombre());
+        if(HelperJuego.validarNaipeSeleccionado(naipeSeleccionado.getNumero(),naipeActual.getNumero()))
+        {
+            imgURL = naipeSeleccionado.getNumero()+"seleccionado.png";
+            img_NaipeTablero_16.setImage(cargarImagenFrejol(imgURL));
+            tableroActual[3][3].setEsSeleccionado(true); 
+            actualizarTablero();
+        }
+        else       
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
+    }
+    
+    public void actualizarTablero()
+    {
+        System.out.println("Jugador Actual==>"+jugadorActual);
+        switch(jugadorActual)
+        {
+            case 1:
+                tableroJugadorHumano = tableroActual;
+                break;
+                
+            case 2:
+                tableroJugadorPC1 = tableroActual;
+                break;
+            
+            case 3:
+                tableroJugadorPC2 = tableroActual;
+                break;
+        }
+      
     }
 }
