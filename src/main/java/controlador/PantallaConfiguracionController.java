@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,10 +26,23 @@ public class PantallaConfiguracionController implements Initializable {
     @FXML
     private void actualizarConfiguracion(ActionEvent event) throws Exception
     {
+        int cantidadCartas;
         boolean visibilidadCartas = chk_VisibilidadCartas.isSelected();
-        int cantidadCartas = Integer.parseInt(txt_cantidad.getText().trim());        
-        Configuracion configuracion = new Configuracion(visibilidadCartas,cantidadCartas);
-        Configuracion.guardarConfiguracion(configuracion);
+        try
+        {
+            cantidadCartas = Integer.parseInt(txt_cantidad.getText().trim());
+        }
+        catch(Exception e)
+        {
+            cantidadCartas = 0;
+        }
+        if(cantidadCartas <= 0 || cantidadCartas > 2)
+            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Configuración",null,"Debe ingresar una cantidad de 1 a 2 oponentes!");                                             
+        else
+        {
+            Configuracion configuracion = new Configuracion(visibilidadCartas,cantidadCartas);
+            Configuracion.guardarConfiguracion(configuracion);
+        }
     }
 
     @FXML

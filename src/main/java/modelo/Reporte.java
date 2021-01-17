@@ -14,9 +14,8 @@ public class Reporte implements Serializable,Comparable<Reporte>{
     //Atributos de clase
     private Date fechaReporte;
     private int duracionJuegoMinutos;
-    private Jugador jugador;
-    private int cantOponente;
-    private ArrayList<Naipe> tableroJugador;
+    private String jugador;
+    private int cantOponente;    
     private String alineacion;
     
     //Constructor
@@ -24,21 +23,13 @@ public class Reporte implements Serializable,Comparable<Reporte>{
     {               
     }
     
-    public Reporte(Date fechaReporte, int duracionJuegoMinutos, Jugador jugador, int cantOponente,String alineacion) {
+    public Reporte(Date fechaReporte, int duracionJuegoMinutos, String jugador, int cantOponente,String alineacion) {
         this.fechaReporte = fechaReporte;
         this.duracionJuegoMinutos = duracionJuegoMinutos;
         this.jugador = jugador;
         this.cantOponente = cantOponente;
         this.alineacion = alineacion;
-    }
-
-    public Reporte(Date fechaReporte, int duracionJuegoMinutos, Jugador jugador, int cantOponente, ArrayList<Naipe> tableroJugador) {
-        this.fechaReporte = fechaReporte;
-        this.duracionJuegoMinutos = duracionJuegoMinutos;
-        this.jugador = jugador;
-        this.cantOponente = cantOponente;
-        this.tableroJugador = tableroJugador;
-    }
+    }  
     
     //Metodos Getter and Setter
     public Date getFechaReporte() {
@@ -57,11 +48,11 @@ public class Reporte implements Serializable,Comparable<Reporte>{
         this.duracionJuegoMinutos = duracionJuegoMinutos;
     }
 
-    public Jugador getJugador() {
+    public String getJugador() {
         return jugador;
     }
 
-    public void setJugador(Jugador jugador) {
+    public void setJugador(String jugador) {
         this.jugador = jugador;
     }
 
@@ -73,14 +64,7 @@ public class Reporte implements Serializable,Comparable<Reporte>{
         this.cantOponente = cantOponente;
     }
 
-    public ArrayList<Naipe> getTableroJugador() {
-        return tableroJugador;
-    }
-
-    public void setTableroJugador(ArrayList<Naipe> tableroJugador) {
-        this.tableroJugador = tableroJugador;
-    }
-
+    
     public String getAlineacion() {
         return alineacion;
     }

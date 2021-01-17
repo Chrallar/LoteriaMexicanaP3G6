@@ -11,6 +11,7 @@ import java.util.Random;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import modelo.Alineacion;
+import modelo.Configuracion;
 import modelo.Ficha;
 import modelo.Jugador;
 import modelo.Naipe;
@@ -30,6 +31,7 @@ public class HelperJuego {
         return ficha;
     }
         
+    /*
     public static void cargarReportes()
     {
         try
@@ -54,6 +56,7 @@ public class HelperJuego {
             
         }
     }
+    */
     
     //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
     public static Date StringToDateTime(String fecha)
@@ -182,10 +185,21 @@ public class HelperJuego {
             
             String urlImagen = numero+".png";
             String urlImagenSeleccionado = numero+"seleccionado.png";
+            String urlImagenSeleccionadoPC = "match.png";
+            String urlImagenOcultaPC = "back.png";
             
             Image imagenNaipe = getImagenNaipe(urlImagen);
             Image imagenNaipeSeleccionado = getImagenNaipe(urlImagenSeleccionado);
-            naipes.add(new Naipe(Integer.parseInt(numero),nombreNaipe,urlImagen,imagenNaipe,imagenNaipeSeleccionado));            
+            Image imagenNaipeSeleccionadoPC = getImagenNaipe(urlImagenSeleccionadoPC);
+            Image imagenNaipeOcultoPC = getImagenNaipe(urlImagenOcultaPC);
+            naipes.add(new Naipe(
+                                    Integer.parseInt(numero),
+                                    nombreNaipe,
+                                    urlImagen,
+                                    imagenNaipe,
+                                    imagenNaipeSeleccionado,
+                                    imagenNaipeSeleccionadoPC,
+                                    imagenNaipeOcultoPC));            
         }                
         return naipes;
     }
@@ -212,5 +226,114 @@ public class HelperJuego {
         if(naipeSeleccionado == naipeActual)
             estadoNaipeSeleccionado = true;
         return estadoNaipeSeleccionado;
+    }
+    
+    public static boolean verificarJuegoGanado(Naipe[][] tablero, Alineacion alineacion)
+    {        
+        switch(alineacion)
+        {
+            case FIGURAS_EN_UNA_FILA:
+                return validarGanadorEnFila(tablero);
+                
+                case FIGURAS_EN_UNA_COLUMNA:
+                    return validarGanadorEnColumna(tablero);
+                
+                case FIGURAS_EN_LAS_ESQUINAS:
+                    return validarGanadorEnEsquinas(tablero);
+                
+                case FIGURAS_JUNTAS_EN_CUALQUIER_ESQUINA:
+                    return validarCuatroFigurasEnEsquina(tablero);                                
+        }
+        return false;
+    }
+    
+    public static boolean validarGanadorEnFila(Naipe[][] tablero)
+    {
+        boolean primeraFila = tablero[0][0].isEsSeleccionado() && 
+                              tablero[0][1].isEsSeleccionado() && 
+                              tablero[0][2].isEsSeleccionado() && 
+                              tablero[0][3].isEsSeleccionado(); 
+        
+        boolean segundaFila = tablero[1][0].isEsSeleccionado() && 
+                              tablero[1][1].isEsSeleccionado() && 
+                              tablero[1][2].isEsSeleccionado() && 
+                              tablero[1][3].isEsSeleccionado();
+
+        boolean terceraFila = tablero[2][0].isEsSeleccionado() && 
+                              tablero[2][1].isEsSeleccionado() && 
+                              tablero[2][2].isEsSeleccionado() && 
+                              tablero[2][3].isEsSeleccionado();        
+                
+        boolean CuartaFila = tablero[3][0].isEsSeleccionado() && 
+                             tablero[3][1].isEsSeleccionado() && 
+                             tablero[3][2].isEsSeleccionado() && 
+                             tablero[3][3].isEsSeleccionado();        
+        
+        return primeraFila || segundaFila || terceraFila || CuartaFila;
+    }
+    
+    public static boolean validarGanadorEnColumna(Naipe[][] tablero)
+    {
+        boolean primeraColumna = tablero[0][0].isEsSeleccionado() && 
+                                 tablero[1][0].isEsSeleccionado() && 
+                                 tablero[2][0].isEsSeleccionado() && 
+                                 tablero[3][0].isEsSeleccionado(); 
+        
+        boolean segundaColumna = tablero[0][1].isEsSeleccionado() && 
+                                 tablero[1][1].isEsSeleccionado() && 
+                                 tablero[2][1].isEsSeleccionado() && 
+                                 tablero[3][1].isEsSeleccionado();
+
+        boolean terceraColumna = tablero[0][2].isEsSeleccionado() && 
+                                 tablero[1][2].isEsSeleccionado() && 
+                                 tablero[2][2].isEsSeleccionado() && 
+                                 tablero[2][3].isEsSeleccionado();        
+                
+        boolean CuartaColumna = tablero[0][3].isEsSeleccionado() && 
+                                tablero[1][3].isEsSeleccionado() && 
+                                tablero[2][3].isEsSeleccionado() && 
+                                tablero[3][3].isEsSeleccionado();        
+        
+        return primeraColumna || segundaColumna || terceraColumna || CuartaColumna;
+    }
+    
+    public static boolean validarGanadorEnEsquinas(Naipe[][] tablero)
+    {
+        boolean primeraEsquina = tablero[0][0].isEsSeleccionado();         
+        boolean segundaEsquina = tablero[0][3].isEsSeleccionado();
+        boolean terceraEsquina = tablero[3][0].isEsSeleccionado();
+        boolean cuartaEsquina  = tablero[3][3].isEsSeleccionado();
+        
+        return primeraEsquina && segundaEsquina && terceraEsquina && cuartaEsquina;
+    }
+    
+    public static boolean validarCuatroFigurasEnEsquina(Naipe[][] tablero)
+    {
+        boolean primeraGrupo = tablero[0][0].isEsSeleccionado() && 
+                               tablero[0][1].isEsSeleccionado() && 
+                               tablero[1][0].isEsSeleccionado() && 
+                               tablero[1][1].isEsSeleccionado(); 
+        
+        boolean segundoGrupo = tablero[0][2].isEsSeleccionado() && 
+                               tablero[0][3].isEsSeleccionado() && 
+                               tablero[1][2].isEsSeleccionado() && 
+                               tablero[1][3].isEsSeleccionado();
+
+        boolean tercerGrupo  = tablero[2][0].isEsSeleccionado() && 
+                               tablero[2][1].isEsSeleccionado() && 
+                               tablero[3][0].isEsSeleccionado() && 
+                               tablero[3][1].isEsSeleccionado();        
+                
+        boolean CuartoGrupo  = tablero[2][2].isEsSeleccionado() && 
+                               tablero[2][3].isEsSeleccionado() && 
+                               tablero[3][2].isEsSeleccionado() && 
+                               tablero[3][3].isEsSeleccionado();        
+        
+        return primeraGrupo || segundoGrupo || tercerGrupo || CuartoGrupo;
+    }
+    
+    public static Configuracion getConfiguracion()
+    {         
+        return Configuracion.desserializarConfiguracion("Configuracion.ser");
     }
 }

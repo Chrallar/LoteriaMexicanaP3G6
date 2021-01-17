@@ -12,25 +12,31 @@ public class Configuracion implements Serializable,Comparable<Configuracion>{
     
     //Atributos de clase
     private boolean visibilidadNaipe;
-    private int maxCantNaipes;
-    private ArrayList<Naipe> tablero;
+    private int maxCantOponentes;    
     
     public Configuracion(boolean visibilidadNaipe, int maxcantidad)
     {
         this.visibilidadNaipe = visibilidadNaipe;
-        this.maxCantNaipes = maxcantidad;
-        this.tablero = new ArrayList<>();                
+        this.maxCantOponentes = maxcantidad;        
+    }    
+
+    public boolean isVisibilidadNaipe() {
+        return visibilidadNaipe;
+    }
+
+    public void setVisibilidadNaipe(boolean visibilidadNaipe) {
+        this.visibilidadNaipe = visibilidadNaipe;
+    }
+
+    public int getMaxCantOponentes() {
+        return maxCantOponentes;
+    }
+
+    public void setMaxCantOponentes(int maxCantOponentes) {
+        this.maxCantOponentes = maxCantOponentes;
     }
     
-    public static void modificarVisibilidadNaipeOponentes(boolean e)
-    {
-        
-    }
     
-    public static void modificarMaxCantOponentes(int c)
-    {
-        
-    }
 
     @Override
     public int compareTo(Configuracion o) {

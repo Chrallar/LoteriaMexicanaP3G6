@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controlador.PantallaConfiguracionController">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PantallaConfiguracionController">
    <children>
       <Pane prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: #d967f5;">
          <children>
@@ -17,13 +17,13 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txt_cantidad" layoutX="15.0" layoutY="98.0" prefWidth="150.0" promptText="Cantidad Maxima Cartas" />
+            <TextField fx:id="txt_cantidad" layoutX="15.0" layoutY="98.0" prefHeight="25.0" prefWidth="86.0" promptText="# Oponentes" />
             <Button layoutX="287.0" layoutY="92.0" mnemonicParsing="false" onAction="#actualizarConfiguracion" text="Guardar">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <CheckBox fx:id="chk_VisibilidadCartas" layoutX="15.0" layoutY="56.0" mnemonicParsing="false" text="Visibilidad Cartas" />
+            <CheckBox fx:id="chk_VisibilidadCartas" layoutX="15.0" layoutY="56.0" mnemonicParsing="false" text="Visibilidad Cartas de Oponentes" />
             <Button layoutX="313.0" layoutY="22.0" mnemonicParsing="false" onAction="#accionRegresar" text="Regresar">
                <font>
                   <Font size="10.0" />

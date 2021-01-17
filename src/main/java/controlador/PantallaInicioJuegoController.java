@@ -96,20 +96,31 @@ public class PantallaInicioJuegoController implements Initializable {
     {
         Naipe[][] tableroJugadorHumano = Helper.HelperJuego.generarTableroJugador();
         Jugador jugadorHumano = new Jugador(nombreJugador,tableroJugadorHumano);                
-        Naipe[][] tableroJugadorPC = null;
+        
+        Naipe[][] tableroJugadorPC1 = null;
         boolean tableroIgual = true;
         while(tableroIgual)
-        { 
-            System.out.println("trabado");
-            tableroJugadorPC = Helper.HelperJuego.generarTableroJugador();
-            if(!tableroJugadorHumano.equals(tableroJugadorPC))
+        {             
+            tableroJugadorPC1 = Helper.HelperJuego.generarTableroJugador();
+            if(!tableroJugadorHumano.equals(tableroJugadorPC1))
                 tableroIgual = false;
-        }        
+        }                
+        Jugador jugadorPC1 = new Jugador("Jugador PC 1",tableroJugadorPC1);
         
-        Jugador jugadorPC = new Jugador("Jugador PC",tableroJugadorPC);
+        Naipe[][] tableroJugadorPC2 = null;
+        tableroIgual = true;
+        while(tableroIgual)
+        {             
+            tableroJugadorPC2 = Helper.HelperJuego.generarTableroJugador();
+            if(!tableroJugadorPC1.equals(tableroJugadorPC2))
+                tableroIgual = false;
+        }                
+        Jugador jugadorPC2 = new Jugador("Jugador PC 2",tableroJugadorPC2);
+                
         ArrayList<Jugador> jugadores = new ArrayList<>();
         jugadores.add(jugadorHumano);
-        jugadores.add(jugadorPC);
+        jugadores.add(jugadorPC1);
+        jugadores.add(jugadorPC2);
         
         ArrayList<Naipe> masoJuego = Helper.HelperJuego.generarMasoNaipes();        
         Juego juego = new Juego(jugadores,alineacionGanadora,masoJuego);   

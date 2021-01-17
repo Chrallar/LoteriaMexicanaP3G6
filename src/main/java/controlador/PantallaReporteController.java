@@ -81,7 +81,7 @@ public class PantallaReporteController implements Initializable {
             {            
                 fecha = Helper.HelperJuego.dateTimeToString(reporte.getFechaReporte());
                 duracion = String.valueOf(reporte.getDuracionJuegoMinutos());
-                jugador = reporte.getJugador().getNombre();
+                jugador = reporte.getJugador();
                 oponente = String.valueOf(reporte.getCantOponente());
                 alineacion = reporte.getAlineacion();
                 reportList.add(new ReporteTabla(fecha,duracion,jugador,oponente, alineacion));
@@ -105,7 +105,7 @@ public class PantallaReporteController implements Initializable {
         {            
             fecha = Helper.HelperJuego.dateTimeToString(reporte.getFechaReporte());
             duracion = String.valueOf(reporte.getDuracionJuegoMinutos());
-            jugador = reporte.getJugador().getNombre();
+            jugador = reporte.getJugador();
             oponente = String.valueOf(reporte.getCantOponente());
             alineacion = reporte.getAlineacion();
             reportList.add(new ReporteTabla(fecha,duracion,jugador,oponente, alineacion));

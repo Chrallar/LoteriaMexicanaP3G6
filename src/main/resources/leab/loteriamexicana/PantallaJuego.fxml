@@ -128,9 +128,8 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="25.0" layoutY="350.0" prefHeight="150.0" prefWidth="200.0">
+            <Pane layoutX="25.0" layoutY="350.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7043" height="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="200.0" />
                   <Button layoutX="25.0" layoutY="30.0" mnemonicParsing="false" onAction="#accionMostrarTableroJugador" prefWidth="150.0" text="Jugador">
                      <font>
                         <Font size="20.0" />
@@ -141,7 +140,22 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Button layoutX="25.0" layoutY="90.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador" prefWidth="150.0" text="Computador">
+                  <Button layoutX="25.0" layoutY="85.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador" prefWidth="150.0" text="PC1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_ComputadadorPC2" layoutX="26.0" layoutY="142.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador2" prefWidth="150.0" text="PC2" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_ComputadadorPC21" layoutX="36.0" layoutY="152.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador2" prefWidth="150.0" text="PC2" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_ComputadadorPC211" layoutX="46.0" layoutY="162.0" mnemonicParsing="false" onAction="#accionMostrarTableroComputador2" prefWidth="150.0" text="PC2" visible="false">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -166,6 +180,12 @@
             <Label layoutX="850.0" layoutY="100.0" text="Naipe Actual">
                <font>
                   <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="815.0" layoutY="538.0" mnemonicParsing="false" onAction="#accionVerificarLoteria" prefWidth="175.0" text="Loteria" />
+            <Label fx:id="lbl_tiempo_regresivo" layoutX="891.0" layoutY="36.0" text="3">
+               <font>
+                  <Font name="System Bold" size="40.0" />
                </font>
             </Label>
          </children>
