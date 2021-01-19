@@ -36,10 +36,13 @@ public class PantallaConfiguracionController implements Initializable {
         {
             cantidadCartas = 0;
         }
+        
+        //Valida que el usuario ingrese al menos un oponente
         if(cantidadCartas <= 0 || cantidadCartas > 2)
             Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Configuración",null,"Debe ingresar una cantidad de 1 a 2 oponentes!");                                             
         else
         {
+            //Actualiza la configuracion en el archivo serializado
             Configuracion configuracion = new Configuracion(visibilidadCartas,cantidadCartas);
             Configuracion.guardarConfiguracion(configuracion);
         }

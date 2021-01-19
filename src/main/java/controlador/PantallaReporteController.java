@@ -77,6 +77,7 @@ public class PantallaReporteController implements Initializable {
             Date fechaFin = Helper.HelperJuego.StringToDateTime(fechaFinal);
             reportes = Helper.HelperJuego.consultarReportesFecha(fechaIn,fechaFin);
             String fecha,jugador,alineacion,duracion,oponente;
+            //Realiza la busqueda de los reportes que se van a mostrar
             for(Reporte reporte : reportes)
             {            
                 fecha = Helper.HelperJuego.dateTimeToString(reporte.getFechaReporte());
@@ -97,6 +98,7 @@ public class PantallaReporteController implements Initializable {
         stageActual.close();
     }
     
+    //Carga la informacion del archivo serializado
     public void cargarReporteArchivo()
     {
         reportes = Reporte.desserializarReporte("Reporte.ser");        
@@ -113,6 +115,7 @@ public class PantallaReporteController implements Initializable {
         tbl_Reportes.setItems(reportList);
     }
     
+    //Permite configurar el formato del reporte usando tableview
     public void cargarFormatoTabla()
     {
         cargarReporteArchivo();

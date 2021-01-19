@@ -46,6 +46,7 @@ public class PantallaInicioJuegoController implements Initializable {
     @FXML
     private void generarAlineacion(ActionEvent event) 
     {
+        //Genera la alineacion ganadora de manera aleatoria
         alineacionGanadora = Helper.HelperJuego.generarAlineacionGanadora();
         String alineacionString = Helper.HelperJuego.getAlineacionGanadora(alineacionGanadora);
         String alineacion = "src/main/resources/formaGanar/"+alineacionString;
@@ -55,6 +56,7 @@ public class PantallaInicioJuegoController implements Initializable {
     @FXML
     private void ComenzarJuego(ActionEvent event) 
     {
+        //Valida que se haya generado la alineacion y que ingrese el nombre del jugador 
         nombreJugador = txt_NombreJugador.getText().trim();
         if(nombreJugador.isEmpty() || alineacionGanadora.equals(Alineacion.ALINEACION_NO_SELECCIONADA))
            Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.WARNING),"Inicio de Juego",null,"Debe ingresar un nombre y haber generado la alineacion ganadora!");
@@ -84,6 +86,7 @@ public class PantallaInicioJuegoController implements Initializable {
     
     public void cargarPanelJuego()
     {
+        //Genera el tablero de juego del jugador Humano
         Naipe[][] tableroJugadorHumano = Helper.HelperJuego.generarTableroJugador();
         Jugador jugadorHumano = new Jugador(nombreJugador,tableroJugadorHumano);                
         
@@ -91,6 +94,7 @@ public class PantallaInicioJuegoController implements Initializable {
         boolean tableroIgual = true;
         while(tableroIgual)
         {             
+            //Genera el tablero de juego de uno de los oponentes(PC)
             tableroJugadorPC1 = Helper.HelperJuego.generarTableroJugador();
             if(!tableroJugadorHumano.equals(tableroJugadorPC1))
                 tableroIgual = false;
@@ -100,7 +104,8 @@ public class PantallaInicioJuegoController implements Initializable {
         Naipe[][] tableroJugadorPC2 = null;
         tableroIgual = true;
         while(tableroIgual)
-        {             
+        {
+            //Genera el tablero de juego de otro de los oponentes(PC)
             tableroJugadorPC2 = Helper.HelperJuego.generarTableroJugador();
             if(!tableroJugadorPC1.equals(tableroJugadorPC2))
                 tableroIgual = false;
@@ -118,6 +123,7 @@ public class PantallaInicioJuegoController implements Initializable {
         mostrarPanelJuego(juego);
     }
     
+    //Carga el panel del juego 
     public void mostrarPanelJuego(Juego juego)
     {
         try
