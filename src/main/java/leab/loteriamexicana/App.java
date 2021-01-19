@@ -20,7 +20,7 @@ public class App extends Application {
     {
         scene = loadScene("PantallaPrincipal", 300, 280);
         scene = new Scene(loadFXML("PantallaPrincipal"), 300, 280);
-        stage.setTitle("Juego Loteria Mexicana v1.0");
+        stage.setTitle("Juego Loteria Mexicana v1.1");
         stage.resizableProperty().setValue(Boolean.FALSE);        
         stage.setScene(scene);
         stage.show();                                

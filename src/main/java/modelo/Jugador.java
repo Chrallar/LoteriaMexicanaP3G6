@@ -3,7 +3,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jugador implements Serializable,Comparable<Reporte>
+public class Jugador implements Serializable,Comparable<Jugador>
 {
     //Atributos de clase
     private String nombre;    
@@ -44,7 +44,7 @@ public class Jugador implements Serializable,Comparable<Reporte>
     }
 
     @Override
-    public int compareTo(Reporte o) {
+    public int compareTo(Jugador o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -29,34 +29,7 @@ public class HelperJuego {
     {
         Ficha ficha = new Ficha();
         return ficha;
-    }
-        
-    /*
-    public static void cargarReportes()
-    {
-        try
-        {
-            Jugador jugador;
-            Reporte reporte;           
-
-            jugador = new Jugador("Jonathan",null);            
-            reporte = new Reporte(StringToDateTime("2020-01-13 09:12:20"),10,jugador,1,"Linea Vertical");            
-            Reporte.guardarReporte(reporte);
-
-            jugador = new Jugador("Josue",null);
-            reporte = new Reporte(StringToDateTime("2020-01-13 12:12:20"),10,jugador,1,"Linea Horizontal");
-            Reporte.guardarReporte(reporte);            
-
-            jugador = new Jugador("Luis",null);
-            reporte = new Reporte(StringToDateTime("2020-01-13 16:12:20"),10,jugador,1,"Diagonal Principal");        
-            Reporte.guardarReporte(reporte);            
-        }
-        catch(Exception e)
-        {
-            
-        }
-    }
-    */
+    }           
     
     //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
     public static Date StringToDateTime(String fecha)
