@@ -118,6 +118,7 @@ public class PantallaJuegoController implements Initializable {
         // TODO
     }    
     
+    //Metodo que se encarga de cargar los datos del juego que se va a ejecutar
      public void cargarJuego(Juego juego) 
     {
         horaInicio = new Date();
@@ -138,8 +139,13 @@ public class PantallaJuegoController implements Initializable {
             tableroJugadorPC2 = jugadorPC2.getTablero();
         }
         
+        //Obtiene la configuracion del maso barajado
         masoNaipe = juegoActual.getMasoNaipes();
+        
+        //Obtiene el naipe actual en curso 
         naipeActual = masoNaipe.get(0);    
+        
+        //Setea como tablero inicial el tablero del humano
         tableroActual = tableroJugadorHumano;     
         
         cargarConfiguracion();
@@ -219,6 +225,7 @@ public class PantallaJuegoController implements Initializable {
         img_AlineacionGanadora.setFitHeight(200);        
     }
        
+    //Carga las imagenes del tablero de juego
     public void cargarImagenesTablero(Naipe[][] tablero)
     {
         //Primera Fila
@@ -290,6 +297,7 @@ public class PantallaJuegoController implements Initializable {
        img_NaipeTablero_16.setFitHeight(116);
     }
     
+    //Dependiendo del numero de la carta se va a ir mostrando un naipe
     public void cargarNaipeActual()
     {
         if(ordenNaipe < 54)
@@ -317,6 +325,8 @@ public class PantallaJuegoController implements Initializable {
         return image;        
     }
     
+    
+    //Cada una de las imagenes tiene asociado un evento onclick
     @FXML
     private void accionNaipe1(MouseEvent event) 
     {
@@ -635,6 +645,7 @@ public class PantallaJuegoController implements Initializable {
             Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Validar Naipe",null,"Naipe seleccionado es el incorrecto!");                                             
     }
     
+    //Actualiza el tablero de juego dependiendo de que tablero se esta viendo
     public void actualizarTablero()
     {
         System.out.println("Jugador Actual==>"+jugadorActual);
@@ -681,7 +692,7 @@ public class PantallaJuegoController implements Initializable {
             Helper.HelperJuego.showMessage(new Alert(Alert.AlertType.ERROR),"Error.. ",null,"Usted no ha ganado, favor continue con su juego!");                                                     
     }  
     
-    //Permite iniciar el conteo regresivo del naipe
+    //Permite iniciar el conteo regresivo del naipe que se va a mostrar
     private void iniciarConteoRegresivoNaipe()
     {
         interval = 4;
@@ -707,6 +718,7 @@ public class PantallaJuegoController implements Initializable {
         lbl_tiempo_regresivo.setText(String.valueOf(interval));
     }
     
+    //Cambia el naipe que se va mostrando cada 3 segundos
     private void cambiarNaipe()
     {        
         //Evita regresar al mismo naipe
