@@ -1,7 +1,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Jugador implements Serializable,Comparable<Jugador>
 {
@@ -30,18 +29,7 @@ public class Jugador implements Serializable,Comparable<Jugador>
 
     public void setTablero(Naipe[][] tablero) {
         this.tablero = tablero;
-    }
-    
-    //Metodos de Clase
-    public static void escogerNaipe(Naipe naipe)
-    {
-        
-    }
-    
-    public static void reclamarPremio()
-    {
-        
-    }
+    }       
 
     @Override
     public int compareTo(Jugador o) {

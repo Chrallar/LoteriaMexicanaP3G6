@@ -2,6 +2,7 @@ package Helper;
 
 import javafx.beans.property.SimpleStringProperty;
 
+//Contiene la estructura que se va a mostrar en el reporte de los juegos terminados
 public class ReporteTabla 
 {
     private SimpleStringProperty fecha;

@@ -12,24 +12,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import modelo.Alineacion;
 import modelo.Configuracion;
-import modelo.Ficha;
 import modelo.Jugador;
 import modelo.Naipe;
 import modelo.Reporte;
 
-public class HelperJuego {
-    
-    public static Ficha cargarImagenNaipe(String path)
-    {
-        Ficha ficha = new Ficha();
-        return ficha;
-    }
-    
-    public static Ficha cargarImagenFicha(String path)
-    {
-        Ficha ficha = new Ficha();
-        return ficha;
-    }           
+public class HelperJuego {        
     
     //Permite convertir la fecha de tipo String a Date para ser guardada en el archivo
     public static Date StringToDateTime(String fecha)

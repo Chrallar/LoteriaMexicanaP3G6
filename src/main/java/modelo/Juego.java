@@ -57,29 +57,6 @@ public class Juego {
 
     public void setNaipeActual(Naipe naipeActual) {
         this.naipeActual = naipeActual;
-    }
-    
-    
-    
-              
-    //Metodos de clase
-    public static void ubicarNaipe()
-    {
-        
-    }
-    
-    public static void escogerNaipe()
-    {
-        
-    }
-    
-    public static void reclamarPremio()
-    {
-        
-    }
-    
-    public static void verificarJuegoGanado()
-    {
-        
-    }    
+    } 
+   
 }

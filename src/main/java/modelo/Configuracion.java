@@ -44,12 +44,15 @@ public class Configuracion implements Serializable,Comparable<Configuracion>{
     }
     
     //Metodos de Clase
+    
+    //Permite gaurdar en un archivo seralizado la configuracion del juego
     public static void serializarConfiguracion(Configuracion conf, String ruta){
         try(ObjectOutputStream a = new ObjectOutputStream(new FileOutputStream(ruta))){
             a.writeObject(conf);
         }catch(IOException e){}
     }
-        
+    
+    //Permite extraer la informacion del archivo serializado
     public static Configuracion desserializarConfiguracion(String ruta){
         try(ObjectInputStream a = new ObjectInputStream(new FileInputStream(ruta))){
             return (Configuracion) a.readObject();
@@ -59,6 +62,7 @@ public class Configuracion implements Serializable,Comparable<Configuracion>{
         }
     }
     
+    //Permite guardar en un archivo seralizado la configuracion del juego
     public static void guardarConfiguracion(Configuracion conf) throws Exception{        
         Configuracion.serializarConfiguracion(conf, "Configuracion.ser");        
     }
